@@ -1,10 +1,27 @@
-use leptonic::prelude::*;
+use leptonic::components::prelude::*;
 use leptos::prelude::*;
-use leptos_meta::{provide_meta_context, Meta, Stylesheet, Title};
-use leptos_router::*;
-
-use crate::error_template::{AppError, ErrorTemplate};
+use leptos_meta::{provide_meta_context, Meta, MetaTags, Stylesheet, Title};
+use leptos_router::components::*;
+use leptos_router::path;
 use crate::pages::welcome::Welcome;
+
+pub fn shell(options: LeptosOptions) -> impl IntoView {
+    view! {
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <AutoReload options=options.clone() />
+                <HydrationScripts options/>
+                <MetaTags/>
+            </head>
+            <body>
+                <App/>
+            </body>
+        </html>
+    }
+}
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -22,16 +39,12 @@ pub fn App() -> impl IntoView {
         <Title text="Leptonic SSR template"/>
 
         <Root default_theme=LeptonicTheme::default()>
-            <Router fallback=|| {
-                let mut outside_errors = Errors::default();
-                outside_errors.insert_with_default_key(AppError::NotFound);
-                view! {
-                    <ErrorTemplate outside_errors/>
-                }
-            }>
-                <Routes>
-                    <Route path="" view=|| view! { <Welcome/> }/>
-                </Routes>
+            <Router>
+                <main>
+                    <Routes fallback=|| view! { "Page not found." }>
+                        <Route path=path!("/") view=Welcome/>
+                    </Routes>
+                </main>
             </Router>
         </Root>
     }
