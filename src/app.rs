@@ -47,11 +47,9 @@ pub fn App() -> impl IntoView {
 
         <Root default_theme=LeptonicTheme::default()>
             <Router>
-                <main>
-                    <Routes fallback=|| view! { "Page not found." }>
-                        <Route path=routes::Root.path() view=Welcome/>
-                    </Routes>
-                </main>
+                <Routes fallback=|| view! { "Page not found." }>
+                    <Route path=routes::Root.path() view=Welcome/>
+                </Routes>
             </Router>
         </Root>
     }
