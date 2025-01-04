@@ -18,21 +18,16 @@ opt-level = 3
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-axum = { version = "0.7.4", optional = true }
+axum = { version = "0.7.9", optional = true }
 axum-server = { version = "0.7.1", features = ["tls-rustls"], optional = true }
-cfg-if = "1.0.0"
 console_error_panic_hook = "0.1.7"
-http = "1.2.0"
 #leptonic = { version = "0.5.0", features = ["csr"] }
 leptonic = { path = "../../leptonic" }
-leptos = { version = "0.7.2", features = [] }
-leptos_axum = { version = "0.7.2", optional = true }
-leptos_meta = { version = "0.7.2", features = [] }
-leptos_router = { version = "0.7.2", features = [] }
-serde = "1.0.217"
-serde_json = "1.0.134"
-thiserror = "2.0.9"
-time = { version = "0.3.37", features = ["wasm-bindgen"] }
+leptos = { version = "0.7.3", features = [] }
+leptos_axum = { version = "0.7.3", optional = true }
+leptos_meta = { version = "0.7.3", features = [] }
+leptos_router = { version = "0.7.3", features = [] }
+leptos-routes = { git = "https://github.com/lpotthast/leptos-routes", branch = "main" }
 tokio = { version = "1.42.0", features = ["rt-multi-thread"], optional = true }
 tower = { version = "0.5.2", optional = true }
 tower-http = { version = "0.6.2", features = ["fs"], optional = true }

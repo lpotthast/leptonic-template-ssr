@@ -2,8 +2,15 @@ use leptonic::components::prelude::*;
 use leptos::prelude::*;
 use leptos_meta::{provide_meta_context, Meta, MetaTags, Stylesheet, Title};
 use leptos_router::components::*;
-use leptos_router::path;
+use leptos_routes::routes;
+
 use crate::pages::welcome::Welcome;
+
+#[routes]
+pub mod routes {
+    #[route("/")]
+    pub mod root {}
+}
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
     view! {
@@ -42,7 +49,7 @@ pub fn App() -> impl IntoView {
             <Router>
                 <main>
                     <Routes fallback=|| view! { "Page not found." }>
-                        <Route path=path!("/") view=Welcome/>
+                        <Route path=routes::Root.path() view=Welcome/>
                     </Routes>
                 </main>
             </Router>
