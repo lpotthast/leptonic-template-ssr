@@ -2,15 +2,13 @@
 #[tokio::main]
 async fn main() {
     use axum::Router;
+    use leptonic_template_ssr::app::*;
     use leptos::logging::log;
     use leptos::prelude::*;
     use leptos_axum::{generate_route_list, LeptosRoutes};
-    use leptonic_template_ssr::app::*;
 
     use tracing_subscriber::{
-        prelude::__tracing_subscriber_SubscriberExt,
-        util::SubscriberInitExt,
-        Layer,
+        prelude::__tracing_subscriber_SubscriberExt, util::SubscriberInitExt, Layer,
     };
 
     let log_filter = tracing_subscriber::filter::Targets::new()
