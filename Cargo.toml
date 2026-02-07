@@ -3,65 +3,6 @@ name = "leptonic-template-ssr"
 version = "0.1.0"
 edition = "2021"
 
-[profile.dev]
-# Potential to opt-in on higher optimization for our code.
-# This may increase incremental compilation times, but will reduce binary size!
-opt-level = 0
-
-[profile.dev.package."*"]
-# High optimization for our dependencies. This should increase wasm-filesize and performance drastically
-# whithout impacting our incremental compilation times.
-# It will lead to obscure error messages from third party libraries though. So comment this out when seeing lib errors.
-opt-level = 3
-
-[lib]
-crate-type = ["cdylib", "rlib"]
-
-[dependencies]
-axum = { version = "0.8.4", optional = true }
-axum-server = { version = "0.7.1", features = ["tls-rustls"], optional = true }
-console_error_panic_hook = "0.1.7"
-#leptonic = { version = "0.5.0", features = ["csr"] }
-leptonic = { path = "../../leptonic" }
-leptos = { version = "0.8.2", features = [] }
-leptos_axum = { version = "0.8.2", optional = true }
-leptos_meta = { version = "0.8.2", features = [] }
-leptos_router = { version = "0.8.2", features = [] }
-leptos-routes = { git = "https://github.com/lpotthast/leptos-routes", branch = "main" }
-tokio = { version = "1.42.0", features = ["rt-multi-thread"], optional = true }
-tower = { version = "0.5.2", optional = true }
-tower-http = { version = "0.6.2", features = ["fs"], optional = true }
-tracing = "0.1.41"
-tracing-subscriber = "0.3.19"
-tracing-wasm = "0.2.1"
-wasm-bindgen = "0.2.99"
-
-[features]
-hydrate = [
-    "leptos/hydrate",
-    "leptonic/hydrate"
-]
-ssr = [
-    "dep:axum",
-    "dep:axum-server",
-    "dep:tokio",
-    "dep:tower",
-    "dep:tower-http",
-    "dep:leptos_axum",
-    "leptos/ssr",
-    "leptos_meta/ssr",
-    "leptos_router/ssr",
-    "leptonic/ssr",
-]
-
-# Defines a size-optimized profile for the WASM bundle in release mode
-[profile.wasm-release]
-inherits = "release"
-opt-level = 'z'
-lto = true
-codegen-units = 1
-panic = "abort"
-
 [package.metadata.leptonic]
 # REQUIRED: Leptonic's build-script will copy the Leptonic themes to this directory. Relative to your project root.
 style-dir = "style"
@@ -135,3 +76,59 @@ lib-default-features = false
 #
 # Optional. Defaults to "release".
 lib-profile-release = "wasm-release"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+hydrate = ["leptos/hydrate", "leptonic/hydrate"]
+ssr = [
+    "dep:axum",
+    "dep:axum-server",
+    "dep:tokio",
+    "dep:tower",
+    "dep:tower-http",
+    "dep:leptos_axum",
+    "leptos/ssr",
+    "leptos_meta/ssr",
+    "leptos_router/ssr",
+    "leptonic/ssr",
+]
+
+[dependencies]
+axum = { version = "0.8.4", optional = true }
+axum-server = { version = "0.7.1", features = ["tls-rustls"], optional = true }
+console_error_panic_hook = "0.1.7"
+#leptonic = { version = "0.5.0", features = ["csr"] }
+leptonic = { path = "../../leptonic" }
+leptos = { version = "0.8.2", features = [] }
+leptos-routes = { git = "https://github.com/lpotthast/leptos-routes", branch = "main" }
+leptos_axum = { version = "0.8.2", optional = true }
+leptos_meta = { version = "0.8.2", features = [] }
+leptos_router = { version = "0.8.2", features = [] }
+tokio = { version = "1.42.0", features = ["rt-multi-thread"], optional = true }
+tower = { version = "0.5.2", optional = true }
+tower-http = { version = "0.6.2", features = ["fs"], optional = true }
+tracing = "0.1.41"
+tracing-subscriber = "0.3.19"
+tracing-wasm = "0.2.1"
+wasm-bindgen = "0.2.99"
+
+[profile.dev]
+# Potential to opt-in on higher optimization for our code.
+# This may increase incremental compilation times, but will reduce binary size!
+opt-level = 0
+
+[profile.dev.package."*"]
+# High optimization for our dependencies. This should increase wasm-filesize and performance drastically
+# whithout impacting our incremental compilation times.
+# It will lead to obscure error messages from third party libraries though. So comment this out when seeing lib errors.
+opt-level = 3
+
+# Defines a size-optimized profile for the WASM bundle in release mode
+[profile.wasm-release]
+inherits = "release"
+opt-level = 'z'
+lto = true
+codegen-units = 1
+panic = "abort"
