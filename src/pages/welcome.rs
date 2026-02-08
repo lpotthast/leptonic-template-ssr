@@ -6,7 +6,7 @@ pub fn Welcome() -> impl IntoView {
     let (count, set_count) = signal(0);
 
     view! {
-        <div style=r#"
+        <div style=r"
             height: 100%;
             width: 100%;
             display: flex;
@@ -14,7 +14,7 @@ pub fn Welcome() -> impl IntoView {
             align-items: center;
             padding: 1em;
             background-color: antiquewhite;
-        "#>
+        ">
             <h2>"Welcome to Leptonic"</h2>
 
             <span style="margin-top: 3em;">

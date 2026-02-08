@@ -1,7 +1,7 @@
 use leptonic::components::prelude::*;
 use leptos::prelude::*;
 use leptos_meta::{provide_meta_context, Meta, MetaTags, Stylesheet, Title};
-use leptos_router::components::*;
+use leptos_router::components::{Route, Router, Routes};
 use leptos_routes::routes;
 
 use crate::pages::welcome::Welcome;
