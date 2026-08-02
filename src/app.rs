@@ -6,10 +6,10 @@ use leptos_routes::routes;
 
 use crate::pages::welcome::Welcome;
 
-#[routes]
+#[routes(without_views)]
 pub mod routes {
     #[route("/")]
-    pub mod root {}
+    mod root {}
 }
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
