@@ -95,7 +95,7 @@ ssr = [
 axum = { version = "0.8.8", optional = true }
 axum-server = { version = "0.8.0", features = ["tls-rustls"], optional = true }
 console_error_panic_hook = "0.1.7"
-leptonic = { git = "https://github.com/lpotthast/leptonic", branch = "hooks", features = ["full"] }
+leptonic = { git = "https://github.com/lpotthast/leptonic", branch = "hooks", features = ["atoms"] }
 leptos = { version = "0.8.15", features = [] }
 leptos-routes = { git = "https://github.com/lpotthast/leptos-routes", branch = "main" }
 leptos_axum = { version = "0.8.7", optional = true }
