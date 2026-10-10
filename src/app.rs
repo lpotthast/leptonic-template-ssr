@@ -1,6 +1,6 @@
 use leptonic::atoms::theme::{LeptonicTheme, ThemeProvider};
 use leptos::prelude::*;
-use leptos_meta::{provide_meta_context, Meta, MetaTags, Stylesheet, Title};
+use leptos_meta::{Meta, MetaTags, Stylesheet, Title, provide_meta_context};
 use leptos_router::components::{Route, Router, Routes};
 use leptos_routes::routes;
 

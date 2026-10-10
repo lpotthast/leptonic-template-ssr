@@ -4,9 +4,9 @@ async fn main() {
     use axum::Router;
     use leptonic_template_ssr::app::*;
     use leptos::{logging::log, prelude::*};
-    use leptos_axum::{generate_route_list, LeptosRoutes};
+    use leptos_axum::{LeptosRoutes, generate_route_list};
     use tracing_subscriber::{
-        prelude::__tracing_subscriber_SubscriberExt, util::SubscriberInitExt, Layer,
+        Layer, prelude::__tracing_subscriber_SubscriberExt, util::SubscriberInitExt,
     };
 
     let log_filter = tracing_subscriber::filter::Targets::new()
